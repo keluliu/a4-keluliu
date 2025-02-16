@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "vite",
-    "build": "chmod +x node_modules/.bin/vite && CI=false vite build",
+    "build": "chmod +x node_modules/.bin/vite && CI=false vite build && npx tailwindcss -i ./src/css/index.css -o ./src/css/index-output.css --minify",
     "lint": "eslint .",
     "preview": "vite preview"
   },
