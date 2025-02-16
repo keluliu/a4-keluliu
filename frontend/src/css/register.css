@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🔹 Centered Authentication Container */
+.auth-container {
+    @apply flex items-center justify-center min-h-screen bg-gray-100;
+}
+
+/* 🔹 Increased Spacing Between Form Sections */
+.auth-form {
+    @apply flex flex-col space-y-4;
+}
+
+/* 🔹 Card Styling */
+.auth-card {
+    @apply bg-white shadow-lg rounded-lg p-10 w-96 text-center;
+}
+
+/* ✅ Adjusted "Register" Title Size */
+.auth-card h2 {
+    @apply text-2xl font-bold text-gray-800 mb-6;
+}
+
+/* 🔹 Input Field Styling */
+.input-group {
+    @apply flex flex-col space-y-2 text-left;
+}
+
+.input-group label {
+    @apply text-sm font-medium text-gray-700;
+}
+
+.input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none;
+}
+
+/* 🔹 Button Styles */
+.primary-btn {
+    @apply w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition font-semibold;
+}
+
+/* 🔹 Error Message */
+.error-text {
+    @apply text-red-500 text-sm text-center;
+}
+
+/* 🔹 Back to Login Text */
+.bottom-text {
+    @apply text-sm text-gray-600 mt-6;
+}
+
+.bottom-text a {
+    @apply text-blue-500 hover:underline;
+}
+
+/* 🔹 Error Message */
+.error-text {
+    @apply text-red-500 text-sm text-center mt-2;
+    font-weight: bold;
+}

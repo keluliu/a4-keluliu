@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🔹 Global Styling */
+body {
+    @apply bg-gray-100 text-gray-900;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+
+/* 🔹 Header with Title and Logout Button */
+.task-list-header {
+    @apply flex justify-between items-center mb-4 w-full;
+}
+
+.task-list-title {
+    @apply text-3xl font-bold text-center flex-grow;
+}
+
+.logout-btn {
+    @apply bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-700 transition;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* 🔹 Form Styling (Task Input + Button in One Row) */
+.task-form {
+    @apply flex items-center justify-center gap-4 mb-4 w-full max-w-3xl mx-auto;
+}
+
+.task-form input {
+    @apply border border-gray-300 p-2 rounded-md w-[250px]; /* Ensures consistent width */
+}
+
+.task-form input[type="date"] {
+    @apply w-[250px]; /* Make date input same width as text input */
+}
+
+.task-form button {
+    @apply bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition w-[120px];
+}
+
+/* 🔹 Sorting Controls */
+#controls {
+    @apply flex justify-end items-center mb-4;
+}
+
+#sort-container {
+    @apply inline-block;
+}
+
+#sort-container label {
+    @apply mr-2;
+}
+
+/* 🔹 Table Styling */
+table {
+    @apply w-full mx-auto border-collapse bg-white shadow-md rounded-lg;
+}
+
+th, td {
+    @apply px-6 py-3 border border-gray-300 text-center;
+}
+
+th {
+    @apply bg-gray-200 text-gray-700 uppercase tracking-wide;
+}
+
+tbody tr:nth-child(even) {
+    @apply bg-gray-50;
+}
+
+/* 🔹 Buttons */
+button {
+    @apply p-2 rounded cursor-pointer bg-gray-300 hover:bg-gray-400 transition;
+}
+
+/* 🔹 Task Delete Button */
+.delete-btn {
+    @apply bg-gray-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-gray-700 transition;
+}
+
+.sort-container {
+    @apply flex justify-end items-center mb-4 w-full;
+}
+
+.sort-container label {
+    @apply font-semibold mr-2;
+}
+
+.sort-container select {
+    @apply border border-gray-300 p-2 rounded-md text-sm bg-white;
+}
+
+.task-input {
+    @apply border border-gray-300 p-2 rounded-md w-full text-center;
+}
+
+/* 🔹 Responsive Design Fix */
+@media (max-width: 768px) {
+    .task-list-header {
+        @apply flex-col items-center gap-2;
+    }
+
+    .task-form {
+        @apply flex-wrap justify-center;
+        max-width: 100%;
+    }
+
+    .task-form input {
+        @apply w-[200px]; /* Reduce size on small screens */
+    }
+
+    .task-form input[type="date"] {
+        @apply w-[200px]; /* Keep date input width same */
+    }
+
+    .task-form button {
+        @apply w-[120px]; /* Maintain button width */
+    }
+
+    .sort-container {
+        @apply justify-end w-full mt-2;
+    }
+}
