@@ -4,12 +4,12 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
-const todoRoutes = require("./routes/todoRoutes");
-const User = require("./models/User");
+const connectDB = require("./backend/config/db");
+const authRoutes = require("./backend/routes/authRoutes");
+const todoRoutes = require("./backend/routes/todoRoutes");
+const User = require("./backend/models/User");
 const LocalStrategy = require("passport-local").Strategy;
-const Todo = require("./models/Todo");
+const Todo = require("./backend/models/Todo");
 const MongoStore = require("connect-mongo");
 
 const app = express();
