@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
-        "./public/**/*.html",        // Scans all HTML files inside /public
-        "./src/**/*.{js,jsx,ts,tsx}" // Scans all React components & pages
+        "./index.html",               // ✅ Ensure Tailwind scans the root HTML
+        "./frontend/src/**/*.{js,jsx,ts,tsx}", // ✅ Scan all frontend React files
+        "./frontend/src/components/**/*.{js,jsx}", // ✅ Scan all components
+        "./frontend/src/pages/**/*.{js,jsx}", // ✅ Scan all pages
+        "./frontend/src/css/**/*.css" // ✅ Ensure Tailwind watches CSS files
     ],
     theme: {
         extend: {
