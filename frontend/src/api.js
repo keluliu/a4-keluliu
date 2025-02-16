@@ -1,7 +1,12 @@
 import axios from "axios";
 
+const API_BASE_URL =
+    process.env.NODE_ENV === "production"
+        ? "https://a4-keluliu.vercel.app/api" // 🔹 Replace with your Vercel domain
+        : "http://localhost:3000/api";
+
 const API = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: API_BASE_URL,
     withCredentials: true // ✅ Ensures session cookies are sent
 });
 
