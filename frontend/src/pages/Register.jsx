@@ -15,7 +15,7 @@ const Register = () => {
         // Dynamically create a <link> element for register-output.css
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "/frontend/src/css/register-output.css"; // Ensure correct path
+        link.href = "/frontend/public/css/register-output.css"; // Ensure correct path
         link.id = "register-style"; // Give it an ID for removal
 
         document.head.appendChild(link); // Append to <head>
