@@ -1,7 +1,6 @@
 {
   "name": "todo-app",
   "version": "1.0.0",
-  "type": "module",
   "description": "A full-stack to-do list manager with authentication and MongoDB",
   "main": "backend/server.js",
   "scripts": {
