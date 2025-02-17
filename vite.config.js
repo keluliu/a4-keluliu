@@ -1,5 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import fs from "fs-extra";
+
+fs.copySync("frontend/public/css", "dist/assets");
 
 export default defineConfig({
   plugins: [react()],
@@ -16,5 +19,15 @@ export default defineConfig({
   },
   build: {
     outDir: "dist", // ✅ Ensure correct build output for serving in Express
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.names?.some(n => n.endsWith(".css"))) {
+            return "assets/[name].css"; // ✅ Uses "names" instead of deprecated "name"
+          }
+          return "assets/[name]-[hash].[ext]";
+        }
+      },
+    },
   },
 });

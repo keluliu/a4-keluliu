@@ -32,5 +32,11 @@
       "destination": "/api/auth/github",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/assets/*.css",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }]
+    }
   ]
 }
