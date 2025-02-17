@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     cors: {
-      origin: "http://localhost:3000",
+      origin: "http://localhost:3000" || process.env.VITE_API_URL,
       credentials: true,
     },
   },
