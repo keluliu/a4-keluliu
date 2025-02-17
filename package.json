@@ -1,6 +1,7 @@
 {
   "name": "todo-app",
   "version": "1.0.0",
+  "type": "module",
   "description": "A full-stack to-do list manager with authentication and MongoDB",
   "main": "backend/server.js",
   "scripts": {
@@ -35,6 +36,8 @@
     "react-toastify": "^9.1.3"
   },
   "devDependencies": {
+    "postcss": "^8.4.24",
+    "autoprefixer": "^10.4.16",
     "nodemon": "^3.0.1",
     "tailwindcss": "^3.0.0",
     "@eslint/js": "^9.17.0",
