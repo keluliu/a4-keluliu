@@ -17,6 +17,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/(.*).css", "destination": "/$1.css" },
     {
       "source": "/api/(.*)",
       "destination": "/backend/server.js"
