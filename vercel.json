@@ -20,6 +20,17 @@
     {
       "source": "/api/(.*)",
       "destination": "/backend/server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/auth/github",
+      "destination": "/api/auth/github",
+      "permanent": true
     }
   ]
 }
