@@ -19,5 +19,15 @@ export default defineConfig({
   },
   build: {
     outDir: "dist", // ✅ Ensure correct build output for serving in Express
+  rollupOptions: {
+    output: {
+      assetFileNames: (assetInfo) => {
+        if (assetInfo.name.endsWith(".css")) {
+          return `assets/[name]-[hash].css`; // ✅ Ensures new unique CSS filename
+        }
+        return "assets/[name].[ext]";
+      },
+    },
+  },
   },
 });
