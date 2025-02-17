@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL =
-    process.env.NODE_ENV === "production"
+    import.meta.env.MODE === "production"
         ? "https://a4-keluliu.vercel.app/api" // 🔹 Replace with your Vercel domain
         : "http://localhost:3000/api";
 

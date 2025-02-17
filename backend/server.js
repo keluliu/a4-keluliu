@@ -9,7 +9,6 @@ const authRoutes = require("./routes/authRoutes");
 const todoRoutes = require("./routes/todoRoutes");
 const User = require("./models/User");
 const LocalStrategy = require("passport-local").Strategy;
-const Todo = require("./models/Todo");
 const MongoStore = require("connect-mongo");
 
 const app = express();
