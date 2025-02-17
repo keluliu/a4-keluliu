@@ -15,7 +15,7 @@ export default defineConfig({
     extensions: [".js", ".jsx"], // ✅ Ensures JSX files work correctly
   },
   css: {
-    postcss: "postcss.config.js", // Ensure postcss is loaded properly
+    postcss: "./postcss.config.js", // Ensure postcss is loaded properly
   },
   build: {
     outDir: "dist", // ✅ Ensure correct build output for serving in Express
