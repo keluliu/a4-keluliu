@@ -33,7 +33,7 @@ const Dashboard = () => {
 
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "/dist/assets/index-output.css";
+        link.href = "/css/index-output.css";
         link.id = "dashboard-style";
 
         document.head.appendChild(link);

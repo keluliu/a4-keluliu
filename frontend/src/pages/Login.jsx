@@ -13,7 +13,7 @@ const Login = ({ setIsAuthenticated }) => {
         // Dynamically create a <link> element for login-output.css
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "/dist/assets/login-output.css"; // Ensure correct path
+        link.href = "/css/login-output.css"; // Ensure correct path
         link.id = "login-style"; // Give it an ID for removal
 
         document.head.appendChild(link); // Append to <head>
