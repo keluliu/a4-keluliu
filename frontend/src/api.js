@@ -56,7 +56,7 @@ export const fetchAuthStatus = async () => {
 // ✅ Todo API Calls
 export const fetchTodos = async () => {
     try {
-        const response = await fetch("http://localhost:3000/api/todos", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/todos`, {
             method: "GET",
             credentials: "include",
         });
@@ -77,7 +77,7 @@ export const fetchTodos = async () => {
 
 export const addTodo = async (description, dueDate) => {
     try {
-        const response = await fetch("http://localhost:3000/api/todos/add", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/add`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ description, dueDate }),
@@ -97,7 +97,7 @@ export const addTodo = async (description, dueDate) => {
 
 export const updateTodo = async (id, updatedFields) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/todos/update`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/update`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id, updatedFields }),
@@ -117,7 +117,7 @@ export const updateTodo = async (id, updatedFields) => {
 
 export const deleteTodo = async (id) => {
     try {
-        const response = await fetch("http://localhost:3000/api/todos/delete", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/todos/delete`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id }),

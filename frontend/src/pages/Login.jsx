@@ -96,7 +96,7 @@ const Login = ({ setIsAuthenticated }) => {
                     </div>
 
                     {/* GitHub Login */}
-                    <a href="http://localhost:3000/api/auth/github" className="github-btn">
+                    <a href={`${import.meta.env.VITE_GITHUB_CALLBACK_URL}`} className="github-btn">
                         🔗 Login with GitHub
                     </a>
 

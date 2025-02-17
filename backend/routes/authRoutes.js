@@ -109,10 +109,10 @@ router.get("/github", passport.authenticate("github", { scope: ["user:email"] })
 
 // ✅ GitHub Callback URL (Handles GitHub Login Response)
 router.get("/github/callback",
-    passport.authenticate("github", { failureRedirect: "http://localhost:5173/login" }),
+    passport.authenticate("github", { failureRedirect: process.env.CLIENT_URL + "/login" }),
     (req, res) => {
         console.log("✅ GitHub Authentication Successful", req.user);
-        res.redirect("http://localhost:5173/dashboard"); // Redirect to dashboard upon successful login
+        res.redirect(process.env.CLIENT_URL + "/dashboard"); // Redirect to dashboard upon successful login
     }
 );
 

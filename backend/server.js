@@ -19,7 +19,7 @@ connectDB();
 
 // ✅ Fix CORS Issue (Frontend runs on port 5173)
 app.use(cors({
-    origin: "http://localhost:5173" || process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL,
     credentials: true, // ✅ Allows frontend to send cookies
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
