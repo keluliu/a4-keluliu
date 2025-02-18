@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { deleteTodo, updateTodo } from "../api";
 import { toast } from "react-toastify";
 
-const formatDate = (isoDate) => {
-    if (!isoDate) return ""; // Prevent errors if date is missing
-    const date = new Date(isoDate);
-    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
-    const day = String(date.getUTCDate()).padStart(2, "0");
-    const year = date.getUTCFullYear();
-    return `${month}/${day}/${year}`; // MM/DD/YYYY format
-};
-
 const TodoList = ({ todos, refreshTodos }) => {
     const [sortBy, setSortBy] = useState("dueDate");
     const [editingValues, setEditingValues] = useState({});
     const [typingTimeout, setTypingTimeout] = useState(null); // Store timeout ID for debouncing
+
+    const handleComplete = async (id) => {
+        try {
+            await updateTodo(id, { completed: true, status: "Completed" });
+            toast.success("Task marked as complete!");
+            refreshTodos();
+        } catch (error) {
+            toast.error("Failed to mark task as complete.");
+        }
+    };
 
     const handleDescriptionChange = (id, value) => {
         setEditingValues((prev) => ({ ...prev, [id]: value }));
@@ -64,7 +65,7 @@ const TodoList = ({ todos, refreshTodos }) => {
 
     return (
         <div>
-            {/* Sorting Section */}
+            {/* Sorting & Filtering Section */}
             <div className="sort-container">
                 <label>Sort By:</label>
                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
@@ -94,6 +95,7 @@ const TodoList = ({ todos, refreshTodos }) => {
                                     value={editingValues[todo._id] ?? todo.description}
                                     onChange={(e) => handleDescriptionChange(todo._id, e.target.value)}
                                     className="task-input"
+                                    disabled={todo.completed} // Prevent editing if completed
                                 />
                             </td>
                             <td>
@@ -102,12 +104,18 @@ const TodoList = ({ todos, refreshTodos }) => {
                                     value={new Date(todo.dueDate).toISOString().split("T")[0]}
                                     onChange={(e) => handleUpdate(todo._id, "dueDate", e.target.value)}
                                     className="task-input"
+                                    disabled={todo.completed} // Prevent date editing if completed
                                 />
                             </td>
-                            <td>{todo.status}</td>
+                            <td>{todo.completed ? "✅ Completed" : todo.status}</td>
                             <td>
+                                {!todo.completed && (
+                                    <button onClick={() => handleComplete(todo._id)} className="complete-btn">
+                                        ✅
+                                    </button>
+                                )}
                                 <button onClick={() => handleDelete(todo._id)} className="delete-btn">
-                                Delete
+                                    ❌ Delete
                                 </button>
                             </td>
                         </tr>

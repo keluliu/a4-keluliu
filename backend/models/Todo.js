@@ -5,7 +5,9 @@ const TodoSchema = new mongoose.Schema({
     dueDate: { type: Date, required: true },
     status: { type: String, default: "Upcoming" },
     creationDate: { type: Date, default: Date.now },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true } // Link task to user
+    completed: { type: Boolean, default: false },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Link task to user
+    category: { type: String, enum: ["Work", "Personal", "Academic", "Travel", "Other"], default: "Other" } // Task category
 });
 
 module.exports = mongoose.model("Todo", TodoSchema);

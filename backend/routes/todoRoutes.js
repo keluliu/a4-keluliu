@@ -51,15 +51,21 @@ router.get("/", ensureAuthenticated, async (req, res) => {
     }
 });
 
-// ✅ Add a new todo
+// ✅ Add a new todo with category selection
 router.post("/add", ensureAuthenticated, async (req, res) => {
     try {
-        const { description, dueDate } = req.body;
-        console.log("🔍 Received Task Data:", { description, dueDate }); // ✅ Log received data
+        const { description, dueDate, category } = req.body;
+        console.log("🔍 Received Task Data:", { description, dueDate, category }); // ✅ Log received data
 
         if (!description || !dueDate) {
             console.error("❌ Missing required fields");
             return res.status(400).json({ error: "All fields are required" });
+        }
+
+        // Validate category
+        const validCategories = ["Work", "Personal", "Academic", "Travel", "Other"];
+        if (category && !validCategories.includes(category)) {
+            return res.status(400).json({ error: "Invalid category selected" });
         }
 
         const status = determineStatus(dueDate); // ✅ Get status based on due date
@@ -69,6 +75,7 @@ router.post("/add", ensureAuthenticated, async (req, res) => {
             description,
             dueDate,
             status, // ✅ Assign the computed status
+            category,
             creationDate: new Date(),
             userId: req.user._id,
         });
@@ -102,6 +109,14 @@ router.put("/update", ensureAuthenticated, async (req, res) => {
             task.status = determineStatus(updatedFields.dueDate);
         }
 
+        // Validate category if updated
+        if (updatedFields.category) {
+            const validCategories = ["Work", "Personal", "Academic", "Travel", "Other"];
+            if (!validCategories.includes(updatedFields.category)) {
+                return res.status(400).json({ error: "Invalid category selected" });
+            }
+        }
+
         await task.save();
         res.status(200).json({ success: true, message: "Task updated!", task });
     } catch (error) {
@@ -125,6 +140,27 @@ router.delete("/delete", ensureAuthenticated, async (req, res) => {
     } catch (err) {
         console.error("❌ Error Deleting Task:", err);
         res.status(500).json({ error: "Failed to delete task" });
+    }
+});
+
+// ✅ Mark task as complete
+router.put("/complete", ensureAuthenticated, async (req, res) => {
+    try {
+        const { id } = req.body;
+        let task = await Todo.findOne({ _id: id, userId: req.user._id });
+
+        if (!task) {
+            return res.status(403).json({ error: "Unauthorized to modify this task" });
+        }
+
+        task.completed = true;
+        task.status = "Completed"; // ✅ Update status as well
+        await task.save();
+
+        res.status(200).json({ success: true, message: "Task marked as complete!", task });
+    } catch (error) {
+        console.error("❌ Error Marking Task as Complete:", error);
+        res.status(500).json({ error: "Failed to mark task as complete" });
     }
 });
 
