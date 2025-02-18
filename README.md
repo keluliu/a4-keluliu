@@ -15,4 +15,5 @@ The To-Do List Manager is a full-stack web application that allows users to crea
 - The Responsive Design Fixes improved layout issues on mobile screens, enhanced button alignment and input field responsiveness.
 3. Refactored Frontend
 - React-based frontend with cleaner state management.
-4. 
+4. Mark as Complete
+- Improves task management by allowing users to track completed tasks separately.
