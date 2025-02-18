@@ -13,6 +13,22 @@ const formatDate = (isoDate) => {
 
 const TodoList = ({ todos, refreshTodos }) => {
     const [sortBy, setSortBy] = useState("dueDate");
+    const [editingValues, setEditingValues] = useState({});
+    const [typingTimeout, setTypingTimeout] = useState(null); // Store timeout ID for debouncing
+
+    const handleDescriptionChange = (id, value) => {
+        setEditingValues((prev) => ({ ...prev, [id]: value }));
+
+        // Clear previous timeout
+        if (typingTimeout) clearTimeout(typingTimeout);
+
+        // Debounce API call (wait 500ms after last keystroke)
+        const newTimeout = setTimeout(() => {
+            handleUpdate(id, "description", value);
+        }, 500);
+
+        setTypingTimeout(newTimeout);
+    };
 
     // Sorting function
     const sortedTodos = [...todos].sort((a, b) => {
@@ -75,8 +91,8 @@ const TodoList = ({ todos, refreshTodos }) => {
                             <td>
                                 <input
                                     type="text"
-                                    value={todo.description}
-                                    onChange={(e) => handleUpdate(todo._id, "description", e.target.value)}
+                                    value={editingValues[todo._id] ?? todo.description}
+                                    onChange={(e) => handleDescriptionChange(todo._id, e.target.value)}
                                     className="task-input"
                                 />
                             </td>
@@ -91,7 +107,7 @@ const TodoList = ({ todos, refreshTodos }) => {
                             <td>{todo.status}</td>
                             <td>
                                 <button onClick={() => handleDelete(todo._id)} className="delete-btn">
-                                    Delete
+                                Delete
                                 </button>
                             </td>
                         </tr>
