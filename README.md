@@ -13,4 +13,6 @@ The To-Do List Manager is a full-stack web application that allows users to crea
 2. Improved UI & Styling
 - Used Toast notifications for real-time feedback when users log in, register, or perform task actions, replaces alart pop-ups.
 - The Responsive Design Fixes improved layout issues on mobile screens, enhanced button alignment and input field responsiveness.
-3. 
+3. Refactored Frontend
+- React-based frontend with cleaner state management.
+4. 
