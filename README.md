@@ -10,7 +10,7 @@ The To-Do List Manager is a full-stack web application that allows users to crea
 ### Changes from A3 to A4
 1. Enhanced Authentication & Security:
 - More robust session management with `connect-mongo` for session persistence.
-2. Improved UI & Styling
+2. UI & UX Enhancements
 - Used Toast notifications for real-time feedback when users log in, register, or perform task actions.
 - The Responsive Design Fixes improved layout issues on mobile screens, enhanced button alignment and input field responsiveness.
 3. Refactored Frontend
